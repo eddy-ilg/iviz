@@ -16,7 +16,7 @@ from PyQt5.QtGui import QPainter
 from PyQt5.QtCore import Qt, QSize, QPoint, QPointF, QRectF
 from PyQt5.QtCore import pyqtSignal
 
-from ...renderers.pixviz import PixelVisualizationRenderer
+from ...factory import factory
 
 
 class View(QWidget):
@@ -36,7 +36,7 @@ class View(QWidget):
         self.__log = TraceLogger()
         super().__init__()
         self._manager = manager
-        self._renderer = PixelVisualizationRenderer()
+        self._renderer = factory.new('renderers.pixviz.PixelVisualizationRenderer')
         self._last_mouse_pos = None
         self._mouse_moved = False
         self._shared_mode = True

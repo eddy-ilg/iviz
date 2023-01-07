@@ -12,7 +12,7 @@
 
 from itypes import TraceLogger, Grid2D, Struct
 from PyQt5.QtWidgets import QGridLayout, QWidget, QPushButton, QLayout, QWidgetItem
-from .grid import DisplayGridLayout
+from ...factory import factory
 
 
 class DisplayGrid(QWidget):
@@ -46,7 +46,7 @@ class DisplayGrid(QWidget):
         self.initUI()
 
     def initUI(self):
-         self._lay = DisplayGridLayout(self)
+         self._lay = factory.new('widgets.containers.grid.layout.DisplayGridLayout', self)
          self.setLayout(self._lay)
 
     def displays(self):

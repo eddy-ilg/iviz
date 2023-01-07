@@ -19,7 +19,7 @@ from PyQt5.QtCore import QRect, QMimeData, QRect
 from ....resources import display_highlight_border_width, viz_button_size, display_grid_spacing, visible_icon_file, invisible_icon_file, display_color, placeholder_size
 from ...controls import VisibilityButton
 from .placeholder import DisplayPlaceholder
-from .container import DisplayContainer
+from ....factory import factory
 
 
 class DisplayGridLayout(QLayout):
@@ -78,12 +78,12 @@ class DisplayGridLayout(QLayout):
 
         for r in self._container_grid.row_range():
             for c in self._container_grid.col_range():
-                container = DisplayContainer(self, DisplayPlaceholder(), c, r, 1, 1)
+                container = factory.new('widgets.containers.grid.container.DisplayContainer', self, DisplayPlaceholder(), c, r, 1, 1)
                 container.setParent(self._parent)
                 self._placeholder_grid[c, r] = container
 
     def _add_widget(self, widget, col, row, colspan, rowspan):
-        wrapper = DisplayContainer(self, widget, col, row, colspan, rowspan)
+        wrapper = factory.new('widgets.containers.grid.container.DisplayContainer', self, widget, col, row, colspan, rowspan)
         wrapper.setParent(self._parent)
         self._container_list.append(wrapper)
 

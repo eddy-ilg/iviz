@@ -10,7 +10,6 @@
 ### See https://github.com/eddy-ilg/iviz          ###
 ### --------------------------------------------- ###
 
-from .pixviz.renderer import PixelVisualizationRenderer
 from .pixviz import ImagePixmapVisualization
 from .pixviz import FlowPixmapVisualization
 from .pixviz import FloatPixmapVisualization

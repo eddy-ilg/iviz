@@ -126,7 +126,7 @@ class FloatPixmapVisualization(_PixmpVisualization):
         self.viz_type_changed.emit(self._viz_type)
 
     def data_index(self, x, y):
-        return (y, x, 0)
+        return (y, x)
 
     def min_value(self):
         data = self.numpy_data()

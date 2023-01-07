@@ -12,12 +12,13 @@
 
 from PyQt5.QtWidgets import QGridLayout, QWidget
 from itypes import Dataset, Path, File, TraceLogger, is_list
-from ..widgets.containers import IVizArea, DisplayGrid
+from ..widgets.containers import DisplayGrid
 from .. import Manager
 from ..widgets.controls import SequenceControls
 from PyQt5.QtWidgets import QScrollArea, QAbstractScrollArea, QFrame
 from PyQt5.QtGui import QResizeEvent
 from PyQt5.Qt import QApplication
+from ..factory import factory
 
 
 class _OversizeScrollArea(QScrollArea):
@@ -160,7 +161,7 @@ class DatasetViewer(QWidget):
 
         self._grid_scroll = _OversizeScrollArea(self._grid)
 
-        self._area = IVizArea(self._manager)
+        self._area = factory.new('widgets.containers.IVizArea', self._manager)
         self._area.set_main_widget(self._grid_scroll)
         self._area.set_controls(self._controls)
 

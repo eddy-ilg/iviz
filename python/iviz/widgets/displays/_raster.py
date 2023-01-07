@@ -14,13 +14,12 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QSizePolicy, QMenu, QPushButton, QCheckBox, QAction, QApplication
 from PyQt5.QtGui import QPalette
 from PyQt5.QtCore import pyqtSignal, Qt, QMargins, QRect, QTimer, QSize
-from ._viz import _VisualizationDisplay
-from ..containers import View
 from itypes import addr, TraceLogger
 from ...utils import to_qpixmap, to_qimage
+from ...factory import factory
 
 
-class _RasterDisplay(_VisualizationDisplay):
+class _RasterDisplay(factory.classref('widgets.displays._viz._VisualizationDisplay')):
     def __init__(self, manager=None, pixviz=None, id=None, label=None):
         self.__log = TraceLogger()
         self._selected_position = None
@@ -87,7 +86,7 @@ class _RasterDisplay(_VisualizationDisplay):
         return None
 
     def _create_view(self):
-        self._view = View(self._manager)
+        self._view = factory.new('widgets.containers.view.View', self._manager)
         self._view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self._layout.addWidget(self._view)
 

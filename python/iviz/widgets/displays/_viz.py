@@ -72,6 +72,9 @@ class _VisualizationDisplay(_BaseDisplay):
     def _update_source_info(self, var_id, file):
         return
 
+    def _create_selectors(self):
+        pass
+
     def initUI(self):
         super().initUI()
 
@@ -97,6 +100,8 @@ class _VisualizationDisplay(_BaseDisplay):
         self._head_widget.setLayout(self._head_layout)
         self._head_layout.setContentsMargins(QMargins(0, 0, 0, 0))
         self._layout.addWidget(self._head_widget)
+
+        self._create_selectors()
 
         self._create_view()
 

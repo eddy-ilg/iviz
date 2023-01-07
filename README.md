@@ -44,6 +44,30 @@ Please note that with all the packages installed you should have the following l
     source ~/code/itypes/bashrc 
     source ~/code/iviz/bashrc
 
+## Troubleshooting 
+
+If you get this error message:
+
+    Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+    qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found.
+    This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+    
+    Available platform plugins are: eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, wayland-egl, wayland, wayland-xcomposite-egl, wayland-xcomposite-glx, webgl, xcb.
+    
+    Aborted (core dumped)
+
+you have to install libxcb-xinerama, e.g.:
+
+    sudo apt-get install libxcb-xinerama0
+
+If you like to avoid this warning:
+    
+    Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+
+you can fix it by:
+    
+    export XDG_SESSION_TYPE=Xorg
+
 ## License and Contributions 
 
 The code is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
