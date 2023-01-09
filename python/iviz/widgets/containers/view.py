@@ -222,3 +222,19 @@ class View(QWidget):
     def leaveEvent(self, e):
         self._end_action()
 
+    def wheelEvent(self, e):
+        delta = e.angleDelta().x()
+        if delta == 0:
+            delta = e.angleDelta().y()
+
+        if self._manager.modifier_state("preview"):
+            if delta > 0: self._manager.increase_preview_zoom()
+            else:         self._manager.decrease_preview_zoom()
+        else:
+            relative_zoom_change = delta / 5000
+            new_relative_zoom = self._renderer.relative_zoom() * (1 + relative_zoom_change)
+            differential_relative_zoom = new_relative_zoom / self._renderer.relative_zoom()
+            norm_point = self._renderer.viewport_to_norm(e.pos())
+
+            self.differential_relative_zoom(differential_relative_zoom, norm_point)
+            self._manager.broadcast_differential_relative_zoom(differential_relative_zoom, norm_point)
